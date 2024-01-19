@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers Care</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<style>
+    .crops-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.crop {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+.crop p {
+    margin: 0;
+}
+
+.crop img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+    
+
+
+</style>
+<body>
+    <div id="cropsAvailable">
+        <p id="c">Corn</p>
+        <img src="./img.jpg/istockphoto-841408966-1024x1024.jpg" alt="Corn Image">
+        <p>Khs4000 per Bag</p>
+        <button onclick="selectCrop('Corn')">Select</button>
+    
+        <p id="w">Wheat</p>
+        <img src="./img.jpg/akin-cakiner-kTaXoYRDrqY-unsplash.jpg" alt="Wheat Image">
+        <p>Kshs 4000/- Per Bag</p>
+        <button onclick="selectCrop('Wheat')">Select</button>
+    
+        <p id="m">Millet</p>
+        <img src="./img.jpg/istockphoto-1896994568-1024x1024.jpg" alt="Millet Image">
+        <p>Kshs 5000/- Per Grate</p>
+        <button onclick="selectCrop('Millet')">Select</button>
+    </div>
+    
+    <div id="shoppingCart">
+        <h2>Shopping Cart:</h2>
+        <ul id="cartItems"></ul>
+    </div>
+    
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" value="1" min="1">
+
+    <form id="form">
+        <label for="email-el">Enter Email:</label><br>
+        <input type="text" id="email-el" placeholder="email@example.com"><br>
+
+        <label for="digital-el">Enter Farmers Digital Card No:</label><br>
+        <input type="text" id="digital-el" placeholder="23467891"><br>
+
+        <label for="password-el">Enter Password:</label><br>
+        <input type="password" id="password-el" placeholder="cornelious"><br>
+
+        <input type="submit" value="Log In"><br>
+    </form>
+
+    <script src="index.js"></script>
+    <script>
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email-el').value;
+            const digitalCardNo = document.getElementById('digital-el').value;
+            const password = document.getElementById('password-el').value;
+
+            const apiUrl = 'https://crops.p.rapidapi.com/';
+            const apiKey = 'YOUR_RAPIDAPI_KEY'; // Replace with your actual RapidAPI key
+
+            const options = {
+                method: 'GET',
+                url: apiUrl,
+                params: {
+                    commonName: 'Trigo',
+                    specieName: 'Triticum',
+                    category: 'Cereales de grano',
+                    subcategory: 'De invierno',
+                    fruitType: 'cariopsis',
+                    family: 'Poaceae',
+                    cropCycle: 'anual',
+                    consistency: 'herbácea'
+                },
+                headers: {
+                    'X-RapidAPI-Key': apiKey,
+                    'X-RapidAPI-Host': 'crops.p.rapidapi.com'
+                }
+            };
+
+            fetchData(options);
+        });
+
+        async function fetchData(options) {
+            try {
+                const response = await axios.request(options);
+                displayApiResponse(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error.message);
+            }
+        }
+
+        function displayApiResponse(data) {
+            const apiResponseContainer = document.getElementById('apiResponse');
+            apiResponseContainer.innerHTML = `<p>${JSON.stringify(data)}</p>`;
+        }
+    </script>
+</body>
+</html>

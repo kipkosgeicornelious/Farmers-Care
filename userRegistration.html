@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<style>
+    body{
+        background-image: url(./img.jpg/istockphoto-1187320693-1024x1024.jpg);
+        text-align: center;
+        display: flexbox;
+        
+    }
+    form{
+        font-size: larger;
+        border:3px solid rgb(41, 41, 35);
+        height: 50%;
+        margin-top: 10%;
+        width: 15%;
+        padding:2%;
+        margin-left: 35%;
+        color:white;
+        background-color: rgb(18, 56, 182);
+
+    }
+</style>
+<body>
+
+<h2>Farmers care web app </h2>
+<p>Register With Us to Enjoy the best farm produce fair prices </p>
+    <form>
+        <label>Enter First Name</label><br>
+        <input type="text" placeholder="Enter FirstName" id="fname-el" required ><br>
+        <label>Enter Second Name</label><br>
+        <input type="text" placeholder="Enter Second Name" id="sname-el"required ><br>
+        <label>Enter Id No:</label> <br>
+        <input type="number" placeholder="Enter id No" id="id-el" required ><br>
+        <label>Enter Email</label><br>
+        <input type="text" placeholder="Enter Email" id="email-el" required><br>
+        <button onclick="register ()">Register </button>
+
+    </form>
+</body>
+<script>
+function register(){
+    let fname= document.getElementById("fname-el")
+    let sname=document.getElementById("sname-el")
+    let fnameValue= fname.value
+    let snameValue= sname.value
+     
+    alert(`Welcome ${fnameValue} ${snameValue} to the best farmers choice market`)
+}
+</script>
+</html>

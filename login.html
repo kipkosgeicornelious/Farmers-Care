@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers Log In</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Farmers Log In</h1>
+    
+    <form id="form">
+        <label for="email-el">Enter Email:</label><br>
+        <input type="text" id="email-el" placeholder="email@example.com"><br>
+        
+        <label for="digital-el">Enter Farmers Digital Card No:</label><br>
+        <input type="text" id="digital-el" placeholder="23467891"><br>
+        
+        <label for="password-el">Enter Password:</label><br>
+        <input type="password" id="password-el" placeholder="cornelious"><br>
+        
+        <input type="submit" value="Log In"><br>
+    </form>
+
+    <div id="apiResponse"></div>
+
+    <script>
+        const apiKey = 'YOUR_RAPIDAPI_KEY'; // Replace with your actual RapidAPI key
+
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email-el').value;
+            const digitalCardNo = document.getElementById('digital-el').value;
+            const password = document.getElementById('password-el').value;
+
+            // You can customize the API URL and headers as needed
+            const apiUrl = 'https://your-api-endpoint.com/login';
+            const options = {
+                method: 'POST', // Adjust the method based on your API requirements
+                url: apiUrl,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-RapidAPI-Key': apiKey,
+                },
+                data: {
+                    email: email,
+                    digitalCardNo: digitalCardNo,
+                    password: password,
+                },
+            };
+
+            fetchData(options);
+        });
+
+        async function fetchData(options) {
+            try {
+                const response = await axios.request(options);
+                displayApiResponse(response.data);
+            } catch (error) {
+                console.error('Error fetching data:', error.message);
+            }
+        }
+
+        function displayApiResponse(data) {
+            const apiResponseContainer = document.getElementById('apiResponse');
+            apiResponseContainer.innerHTML = `<p>${JSON.stringify(data)}</p>`;
+        }
+    </script>
+</body>
+</html>

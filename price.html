@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search and Filter</title>
+    <style>
+        /* Add your CSS styles here */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search and Filter</h1>
+    <form id="search-form">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search"><br>
+
+        <label for="sort-by">Sort by:</label>
+        <select id="sort-by" name="sort-by">
+            <option value="price-asc">Price (Low to High)</option>
+            <option value="price-desc">Price (High to Low)</option>
+        </select><br>
+
+        <input type="submit" value="Apply">
+    </form>
+
+    <div id="output">
+        <!-- Output results dynamically here -->
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
